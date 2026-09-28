@@ -1,0 +1,1 @@
+#Integrates the 3 files detection and opens up the camera
