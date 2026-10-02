@@ -44,13 +44,13 @@ while True:
 
         if len(row_data) == 63:
 
-            row_data.insert(0, "D")
+            row_data.insert(0, "F")
 
             with open("hand_data.csv", 'a', newline="") as f:
                 writer = csv.writer(f)
                 writer.writerow(row_data)
 
-            print("Saved sign D!")
+            print("Saved sign F!")
 
 cam.release()
 hand.close()

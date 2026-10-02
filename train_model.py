@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import pickle
-data = pd.read_csv("hand_data.csv", header=None)
+data = pd.read_csv("dataset_hand_data.csv", header=None)
 
 
 X = data.iloc[:, 1:]
@@ -50,3 +50,4 @@ with open("model.pkl", "wb") as f:
     pickle.dump(model, f)
 
 print("Model saved successfully!")
+print(y.value_counts())
