@@ -1,0 +1,99 @@
+import time
+import cv2
+import mediapipe as mp
+
+
+class handDetector:
+    def __init__(self, mode=False, maxHands=2, modelComplexity=1,
+                 detectionCon=0.5, trackCon=0.5):
+        self.mode = mode
+        self.maxHands = maxHands
+        self.modelComplexity = modelComplexity
+        self.detectionCon = detectionCon
+        self.trackCon = trackCon
+
+        self.mpHands = mp.solutions.hands
+        # Keyword args on purpose: newer MediaPipe added model_complexity as the
+        # 3rd positional arg, so the video's positional call crashes.
+        self.hands = self.mpHands.Hands(
+            static_image_mode=self.mode,
+            max_num_hands=self.maxHands,
+            model_complexity=self.modelComplexity,
+            min_detection_confidence=self.detectionCon,
+            min_tracking_confidence=self.trackCon,
+        )
+        self.mpDraw = mp.solutions.drawing_utils
+        self.results = None
+        self.tipIds = [4,8,12,16,20]
+
+    def findHands(self, img, draw=True):
+        imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        self.results = self.hands.process(imgRGB)
+
+        if self.results.multi_hand_landmarks and draw:
+            for handLms in self.results.multi_hand_landmarks:
+                self.mpDraw.draw_landmarks(img, handLms,
+                                           self.mpHands.HAND_CONNECTIONS)
+        return img
+
+    def findPosition(self, img, handNo=0, draw=True):
+        self.lmList = []
+        if self.results and self.results.multi_hand_landmarks:
+            if handNo < len(self.results.multi_hand_landmarks):
+                myHand = self.results.multi_hand_landmarks[handNo]
+                h, w, c = img.shape
+                for id, lm in enumerate(myHand.landmark):
+                    cx, cy = int(lm.x * w), int(lm.y * h)   # 0–1 → pixels
+                    self.lmList.append([id, cx, cy])
+                    if draw:
+                        cv2.circle(img, (cx, cy), 7, (255, 0, 255), cv2.FILLED)
+        return self.lmList
+        
+
+    def  fingersUP(self):
+        finger = []
+
+        if self.lmList[self.tipIds[0]][1] < self.lmList[self.tipIds[0] - 1][1]:
+            finger.append(1)
+        else:
+            finger.append(0)
+
+        for id in range(1,5):
+            if self.lmList[self.tipIds[id]][2] < self.lmList[self.tipIds[id] - 2][2]:
+                finger.append(1)
+            else:
+                finger.append(0)
+        return finger
+
+def main():
+    pTime = 0
+    cap = cv2.VideoCapture(0)
+    detector = handDetector()
+
+    while True:
+        success, img = cap.read()
+        if not success:
+            break
+
+        img = detector.findHands(img)
+        lmList = detector.findPosition(img)
+        if lmList:
+            print(lmList[4])          # thumb tip: [id, x, y]
+
+        cTime = time.time()
+        fps = 1 / (cTime - pTime) if pTime else 0
+        pTime = cTime
+
+        cv2.putText(img, str(int(fps)), (10, 70),
+                    cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
+        cv2.imshow("Image", img)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    main()
