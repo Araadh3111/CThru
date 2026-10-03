@@ -1,0 +1,49 @@
+
+import numpy as np
+import cv2 as cv
+cap = cv.VideoCapture(0)
+
+width = int(cap.get(3))
+height = int(cap.get(4))
+
+while True:
+    ret, frame = cap.read()
+    width = int(cap.get(3) )
+   # image = np.zeros(frame.shape,np.uint8)
+   # smaller_frame = cv.resize(frame , (0,0),fx=0.5,fy=0.5)
+    #image[:height//2,:width//2] = smaller_frame
+    #image[height//2:,:width//2] = smaller_frame
+    #image[:height//2,width//2:] = smaller_frame
+    #image[height//2:,width//2:] = smaller_frame
+    cv.imshow('OpenCV',image)
+    if cv.waitKey(1) == ord("q"):
+        break
+cap.release()
+#img = cv.imread("rishu's assets/lebron.jpeg", 1)
+#img = cv.resize(img, (600, 400), fx=1.5,fy=1.5)
+#img = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
+#cv.imwrite("newlebron.jpeg", img)
+
+#cv.imshow("Something",img)
+#cv.waitKey(0)
+#cv.destroyAllWindows()
+
+#for i in range(100):
+    #for j in range(img.shape[1]):
+        #img[i][j] = [129,180,129]
+
+#face = img[300:600,150:350]
+#img[400:700, 400:600] = face
+
+#cv.imshow("huh",img)
+#cv.waitKey(0)
+cv.destroyAllWindows()
+
+    img= cv.line(frame,(0,0),(width,height),(255,0,0),10)
+    img= cv.line(img,(0,height),(width,0),(255,0,0),5)
+    img = cv.rectangle(img,(100,100),(200,200),(128,128,128),5)
+    img =cv.circle(img,(300,300),60,(0,0,255),-1)
+
+    font = cv.FONT_HERSHEY_COMPLEX
+    img =  cv.putText(img,'Im Goated!',(200,height-10),font,2,(0,0,0),5,cv.LINE_AA)
+
