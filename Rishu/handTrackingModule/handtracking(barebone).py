@@ -40,4 +40,5 @@ while True:
     cv.imshow("Image", img)
     cv.waitKey(1)
 
+
 #cv.destroyAllWindows()

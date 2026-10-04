@@ -7,7 +7,7 @@ import random
 DATASET_PATH = "../asl_dataset/asl_alphabet_train/asl_alphabet_train"
 OUTPUT_FILE = "dataset_hand_data.csv"
 
-LETTERS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + ["space"]
+LETTERS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + ["space", "clear", "backspace"]
 SAMPLES_PER_LETTER = 1000
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(

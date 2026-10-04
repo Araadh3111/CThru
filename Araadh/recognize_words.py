@@ -2,6 +2,9 @@ import cv2
 import mediapipe as mp
 import pickle
 import numpy as np
+import pyttsx3
+
+engine = pyttsx3.init()
 
 with open("model_webcam.pkl", "rb") as f:
     model = pickle.load(f)
@@ -116,15 +119,33 @@ while True:
 
             if prediction != locked_prediction:
 
-                if average_confidence >= 50:
+                if prediction == "clear" or prediction == "backspace":
+                    required_confidence = 30
+                else:
+                    required_confidence = 50
+
+                if average_confidence >= required_confidence:
 
                     if prediction == "space":
 
                         text += " "
+
                         print(
                             f"Confirmed: SPACE "
                             f"({average_confidence:.1f}%)"
                         )
+
+                    elif prediction == "clear":
+
+                        text = ""
+
+                        print("Confirmed: CLEAR")
+
+                    elif prediction == "backspace":
+
+                        text = text[:-1]
+
+                        print("Confirmed: BACKSPACE")
 
                     else:
 
@@ -196,7 +217,9 @@ while True:
         frame
     )
 
-    if cv2.waitKey(1) & 0xFF == ord("q"):
+    key = cv2.waitKey(1) & 0xFF
+
+    if key == ord("q"):
         break
 
 cam.release()
@@ -205,3 +228,7 @@ cv2.destroyAllWindows()
 
 print("\nFinal text:")
 print(text)
+
+if text.strip():
+    engine.say(text)
+    engine.runAndWait()
