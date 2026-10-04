@@ -38,7 +38,7 @@ async function sendFrame() {
     canvas.toBlob(async function(blob) {
 
         const response = await fetch(
-            "/api/predict",
+            "/predict",
             {
                 method: "POST",
                 body: blob
