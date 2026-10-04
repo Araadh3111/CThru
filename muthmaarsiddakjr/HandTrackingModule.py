@@ -13,8 +13,6 @@ class handDetector:
         self.trackCon = trackCon
 
         self.mpHands = mp.solutions.hands
-        # Keyword args on purpose: newer MediaPipe added model_complexity as the
-        # 3rd positional arg, so the video's positional call crashes.
         self.hands = self.mpHands.Hands(
             static_image_mode=self.mode,
             max_num_hands=self.maxHands,
@@ -43,7 +41,7 @@ class handDetector:
                 myHand = self.results.multi_hand_landmarks[handNo]
                 h, w, c = img.shape
                 for id, lm in enumerate(myHand.landmark):
-                    cx, cy = int(lm.x * w), int(lm.y * h)   # 0–1 → pixels
+                    cx, cy = int(lm.x * w), int(lm.y * h)  
                     self.lmList.append([id, cx, cy])
                     if draw:
                         cv2.circle(img, (cx, cy), 7, (255, 0, 255), cv2.FILLED)
@@ -78,7 +76,7 @@ def main():
         img = detector.findHands(img)
         lmList = detector.findPosition(img)
         if lmList:
-            print(lmList[4])          # thumb tip: [id, x, y]
+            print(lmList[4])        
 
         cTime = time.time()
         fps = 1 / (cTime - pTime) if pTime else 0
