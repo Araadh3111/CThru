@@ -4,7 +4,7 @@
 
 Sign Language detector a part of Cthru made by Me(Araadh{ Araadh Singh on slack }) is a machine learning pipeling which uses some custom dataset(custom collected samples) 
 and mostly the letters are from a dataset from Kaggle (https://www.kaggle.com/datasets/grassknoted/asl-alphabet?resource=download) which has positions of hand In american sign
-language letters in varying angles and positions and lightings for the machine to learn better and I have made the front end too so u guys can u se it too(link)
+language letters in varying angles and positions and lightings for the machine to learn better and I have made the front end too so u guys can u se it too(https://cthru.vercel.app/)
 
 
 ---
@@ -116,17 +116,9 @@ Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
 
 The frontend was made using HTML, CSS and JavaScript.
 
-**Live:** [YOUR VERCEL LINK]
+**Live:** https://cthru.vercel.app/
 
-![Website](./assets/website.png)
-
----
-
-## Backend
-
-**FastAPI** was used to connect the frontend with the sign recognition model.
-
-[Briefly explain `/predict`.]
+<img width="1886" height="957" alt="image" src="https://github.com/user-attachments/assets/a04db455-9471-4df1-8065-1e15ac8f736e" />
 
 ---
 
