@@ -2,8 +2,8 @@
 import numpy as np
 import cv2
 
-img  = cv2.resize(cv2.imread("rishu's assets/match.jpg", 0),(0,0),fx=0.3,fy=0.3)
-template  = cv2.resize(cv2.imread("rishu's assets/template.jpg", 0,),(0,0),fx=0.3,fy=0.3)
+img  = cv2.resize(cv2.imread("D:/Projects/For ThirdSpace/CThru/Rishu/rishu's assets/match.jpg", 0),(0,0),fx=0.3,fy=0.3)
+template  = cv2.resize(cv2.imread("D:/Projects/For ThirdSpace/CThru/Rishu/rishu's assets/template.jpg", 0,),(0,0),fx=0.3,fy=0.3)
 
 h,w = template.shape
 methods = [cv2.TM_CCOEFF,cv2.TM_CCOEFF_NORMED,cv2. TM_CCORR,cv2.TM_CCORR_NORMED,cv2.TM_SQDIFF,cv2.TM_SQDIFF_NORMED]
