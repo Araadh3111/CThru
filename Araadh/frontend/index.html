@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CThru Sign Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>CThru</h1>
+
+    <div id="dashboard">
+
+        
+        <div id="camera">
+            <p>Camera feed will appear here</p>
+        </div>
+
+        
+        <div id="info">
+
+            <section>
+                <h3>Current Sign:</h3>
+                <p id="current-sign">None</p>
+            </section>
+
+            <section>
+                <h3>Confidence:</h3>
+                <p id="confidence">0%</p>
+            </section>
+
+            <section>
+                <h3>Detected Text:</h3>
+                <p id="detected-text">Nothing yet...</p>
+            </section>
+
+        </div>
+
+    </div>
+
+    
+
+    <div id="buttons">
+
+        <button id="start-btn">
+            Start Detection
+        </button>
+
+        <button id="speak-btn">
+             Speak Text
+        </button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
