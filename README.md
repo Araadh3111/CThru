@@ -106,15 +106,9 @@ Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
 
 ## Model
 
-**Model:** [model name]
+**Model:** model_webcam.pkl
 
-**Features:** [63 / whatever you used]
-
-**Classes:** [your classes]
-
-**Accuracy:** [your accuracy]
-
-[1–2 sentences about training.]
+**Accuracy:** 98.56
 
 ---
 
