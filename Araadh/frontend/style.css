@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Dancing+Script:wght@400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Russo+One&display=swap');
+
+
+
+
+body {
+    background-color: bisque;
+    color: black;
+    font-family: 'Russo One', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 700;
+    margin: 10px 0 25px 0;
+    text-align: center;
+}
+
+#dashboard {
+    display: flex;
+    gap: 25px;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+
+
+
+#camera {
+    width: 70%;
+    height: 500px;
+    background-color: black;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#camera p {
+    color: white;
+}
+
+
+
+
+#camera video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+#info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin: 0;
+    max-width: none;
+    flex: 1;
+    border-radius: 20px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+
+section h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+
+#current-sign,
+#confidence,
+#detected-text {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0;
+    word-break: break-word;
+}
+
+
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+#start-btn,
+#speak-btn {
+    padding: 12px 25px;
+    font-family: 'Russo One', sans-serif;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+#start-btn:hover,
+#speak-btn:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+@media (max-width: 800px) {
+    #dashboard {
+
+        flex-direction: column;
+    }
+
+    #camera {
+        width: 100%;
+        height: 400px;
+    }
+
+    #info {
+        width: 100%;
+    }
+
+    #buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}

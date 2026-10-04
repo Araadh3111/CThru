@@ -6,7 +6,7 @@ import pyttsx3
 
 engine = pyttsx3.init()
 
-with open("model_webcam.pkl", "rb") as f:
+with open("models/model_webcam.pkl", "rb") as f:
     model = pickle.load(f)
 
 mp_hands = mp.solutions.hands
