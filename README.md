@@ -54,6 +54,7 @@ A module that tracks the user's body, it is built using mediapipe and has 33 uni
 - OpenCV
 - Time (for framerates)
 ### Project Structure :-
+```
 CThru/
 ├── .../
 ├── Rishu/
@@ -61,7 +62,7 @@ CThru/
 │   │   ├── PEmodule.py 
 │   │   └── poseEstimation.py
 └── README.md
-
+```
 ---
 ## Hand Tracking
 A module that tracks the user's and, it is built using mediapipe and has 21 unique points that maps the user's hands (can be more than one user too). It change be used for gesture controls and accessibility etc and serves the purpose of a module to build projects on.
