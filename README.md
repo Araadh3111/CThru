@@ -78,6 +78,7 @@ A module that tracks the user's and, it is built using mediapipe and has 21 uniq
 - OpenCV
 - Time (for framerates)
 ### Project Structure :-
+```
 CThru/
 ├── .../
 ├── Rishu/
@@ -85,7 +86,7 @@ CThru/
 │   │   ├── HTmodule.py 
 │   │   └── handTracking.py
 └── README.md
-
+```
 ---
 ## Color Displayer
 It can be used to display certain colours from a web cam, image or video. (currently set to blue, a customizable selector will be add when the dashboard is done.)
@@ -100,12 +101,13 @@ It can be used to display certain colours from a web cam, image or video. (curre
 - OpenCV
 - Numpy
 ### Project Structure :-
+```
 CThru/
 ├── .../
 ├── Rishu/
 │   ├── color_displayer.py
 └── README.md
-
+```
 ---
 ## Face Tracker (basic)
 A basic face tracker built on opencv (better version and a mesh version will be added in next ship!)
@@ -119,11 +121,12 @@ A basic face tracker built on opencv (better version and a mesh version will be 
 - OpenCV
 - Numpy
 ### Project Structure :-
+```
 CThru/
 ├── .../
 ├── Rishu/
 │   ├── facial_tracker.py 
 └── README.md
-
+```
 ---
 (the read me file is not finished it will be finished asap (im making this at 1 am what do you expect dawg.))
