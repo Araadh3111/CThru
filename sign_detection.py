@@ -1,1 +1,0 @@
-# Detects Sign Language
