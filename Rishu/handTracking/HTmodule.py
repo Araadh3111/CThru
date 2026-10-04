@@ -1,3 +1,5 @@
+#Hand Tracking Module
+
 import cv2 as cv
 import mediapipe as mp
 import time
@@ -43,7 +45,7 @@ class handDetector():
 
 def main():
     
-    cap =cv.VideoCapture(0)
+    cap = cv.VideoCapture(0)
     pTime = 0
     cTime = 0
     detector = handDetector()
