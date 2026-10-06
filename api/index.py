@@ -1,3 +1,4 @@
+print("CTHRU API STARTING")
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import cv2
@@ -116,7 +117,7 @@ async def predict(request: Request):
 
     confidence = max(probabilities) * 100
 
-    # Stability tracking
+  
 
     if prediction == last_prediction:
 
