@@ -160,6 +160,9 @@ CThru/
 
 ### Z
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/cf6f8bd4-32c8-41fa-a6a2-29cb333aa290" />
+### Ai usage decleration:
+I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file
+
 
 ---
 
