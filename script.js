@@ -1,11 +1,18 @@
+import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21"; // To Import mediapipes hand tracker replacing the import I deleted in requirements
+
+
 const startButton = document.getElementById("start-btn");
+const speakButton = document.getElementById("speak-btn");
 const camera = document.getElementById("camera");
 
-let video;
-let canvas;
-let context;
+let video; //camera
+let handLandmarker; //tradker
+let busy = false; // stops anew request going out while the last one waits
 
 startButton.addEventListener("click", async function() {
+
+    startButton.disabled = true;
+    startButton.textContent = "Loading...";
 
     camera.innerHTML = `
         <video id="video" width="600" height="350" autoplay></video>
@@ -19,31 +26,58 @@ startButton.addEventListener("click", async function() {
 
     video.srcObject = stream;
 
-    canvas = document.createElement("canvas");
-    canvas.width = 600;
-    canvas.height = 350;
+    const vision = await FilesetResolver.forVisionTasks(
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21/wasm"
+    );
 
-    context = canvas.getContext("2d");
+    handLandmarker = await HandLandmarker.createFromOptions(vision, {
+        baseOptions: {
+            modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
+        },
+        runningMode: "VIDEO",
+        numHands: 1,
+        minHandDetectionConfidence: 0.7
+    });
 
-    setInterval(sendFrame, 500);
+    startButton.textContent = "Detecting";
+
+    setInterval(sendFrame, 300);
 });
 
 
 async function sendFrame() {
 
-    if (!video) return;
+    if (busy) return;
+    if (video.readyState < 2) return;
 
-    context.drawImage(video, 0, 0, 600, 350);
+    busy = true;
 
-    canvas.toBlob(async function(blob) {
+    try {
+
+        const result = handLandmarker.detectForVideo(video, performance.now());
+
+        const points = [];
+
+        if (result.landmarks.length > 0) {
+
+            for (const point of result.landmarks[0]) {
+                points.push(point.x, point.y, point.z);
+            }
+        }
 
         const response = await fetch(
             "/api/predict",
             {
                 method: "POST",
-                body: blob
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(points)
             }
         );
+
+        if (!response.ok) {
+            document.getElementById("current-sign").textContent = "Server error";
+            return;
+        }
 
         const data = await response.json();
 
@@ -53,7 +87,10 @@ async function sendFrame() {
             data.text
         );
 
-    }, "image/jpeg");
+    } finally {
+
+        busy = false;
+    }
 }
 
 
@@ -67,7 +104,7 @@ function updateDetection(sign, confidence, text) {
     document.getElementById("detected-text").textContent =
         text;
 }
-const speakButton = document.getElementById("speak-btn");
+
 
 speakButton.addEventListener("click", function() {
 
