@@ -3,9 +3,17 @@ import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@m
 const startButton = document.getElementById("start-btn");
 const speakButton = document.getElementById("speak-btn");
 const camera = document.getElementById("camera");
-
 const requiredCount = 8;
-
+const connections = [
+    [0, 1], [1, 2], [2, 3], [3, 4],
+    [0,5], [5,6], [6,7], [7,8],
+    [9,10], [10,11], [11,12],
+    [13,14],[14,15],[15,16],
+    [0,17],[17,18],[18,19],[19,20],
+    [5,9],[9,13],[13,17]
+];
+let canvas;
+let drawing_tool;
 let video;
 let handLandmarker;
 let busy = false;
@@ -26,7 +34,14 @@ startButton.addEventListener("click", async function() {
     `;
 
     video = document.getElementById("video");
-
+    
+    canvas = document.getElementById("overlay");
+    drawing_tool = canvas.getContext("2d");
+    video.addEventListener("loadedmetadata", function() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    
+    }); 
     const stream = await navigator.mediaDevices.getUserMedia({
         video: true
     });
@@ -62,7 +77,7 @@ async function sendFrame() {
     try {
 
         const result = handLandmarker.detectForVideo(video, performance.now());
-
+        drawing_tool.clearRect(0,0,canvas.width,canvas.height);
         if (result.landmarks.length === 0) {
 
             predictionCount = 0;
@@ -74,9 +89,28 @@ async function sendFrame() {
         }
 
         const points = [];
+                const hand = result.landmarks[0];
 
+        drawing_tool.strokeStyle = "white";
+        drawing_tool.lineWidth = 3;
+
+        for (const pair of connections) {
+
+            const start = hand[pair[0]];
+            const end = hand[pair[1]];
+
+            drawing_tool.beginPath();
+            drawing_tool.moveTo(start.x * canvas.width, start.y * canvas.height);
+            drawing_tool.lineTo(end.x * canvas.width, end.y * canvas.height);
+            drawing_tool.stroke();
+        }
+        drawing_tool.fillStyle = "red";
+        
         for (const point of result.landmarks[0]) {
             points.push(point.x, point.y, point.z);
+            drawing_tool.beginPath()
+            drawing_tool.arc(point.x * canvas.width,point.y * canvas.height,3,0,Math.PI*2)
+            drawing_tool.fill()
         }
 
         const response = await fetch(
