@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-opencv-python-headless
+
 numpy
-mediapipe==0.10.21
-scikit-learn
+
+scikit-learn==1.9.1
