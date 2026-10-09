@@ -22,6 +22,7 @@ startButton.addEventListener("click", async function() {
 
     camera.innerHTML = `
         <video id="video" width="600" height="350" autoplay></video>
+        <canvas id = "overlay" width="600" height="350" ></canvas>
     `;
 
     video = document.getElementById("video");
