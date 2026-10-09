@@ -90,9 +90,10 @@ async function sendFrame() {
 
         const points = [];
                 const hand = result.landmarks[0];
-
-        drawing_tool.strokeStyle = "white";
-        drawing_tool.lineWidth = 3;
+        drawing_tool.shadowColor = "#00E5FF";
+        drawing_tool.shadowBlur = 15;
+        drawing_tool.strokeStyle = "#00E5FF";
+        drawing_tool.lineWidth = 2;
 
         for (const pair of connections) {
 
@@ -104,7 +105,7 @@ async function sendFrame() {
             drawing_tool.lineTo(end.x * canvas.width, end.y * canvas.height);
             drawing_tool.stroke();
         }
-        drawing_tool.fillStyle = "red";
+        drawing_tool.fillStyle = "#E6B450";
         
         for (const point of result.landmarks[0]) {
             points.push(point.x, point.y, point.z);
