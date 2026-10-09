@@ -1,13 +1,19 @@
-import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21"; // To Import mediapipes hand tracker replacing the import I deleted in requirements
-
+import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21";
 
 const startButton = document.getElementById("start-btn");
 const speakButton = document.getElementById("speak-btn");
 const camera = document.getElementById("camera");
 
-let video; //camera
-let handLandmarker; //tradker
-let busy = false; // stops anew request going out while the last one waits
+const requiredCount = 8;
+
+let video;
+let handLandmarker;
+let busy = false;
+
+let text = "";
+let lockedPrediction = null;
+let lastPrediction = null;
+let predictionCount = 0;
 
 startButton.addEventListener("click", async function() {
 
@@ -41,7 +47,7 @@ startButton.addEventListener("click", async function() {
 
     startButton.textContent = "Detecting";
 
-    setInterval(sendFrame, 300);
+    setInterval(sendFrame, 100);
 });
 
 
@@ -56,13 +62,20 @@ async function sendFrame() {
 
         const result = handLandmarker.detectForVideo(video, performance.now());
 
+        if (result.landmarks.length === 0) {
+
+            predictionCount = 0;
+            lastPrediction = null;
+            lockedPrediction = null;
+
+            updateDetection("None", 0);
+            return;
+        }
+
         const points = [];
 
-        if (result.landmarks.length > 0) {
-
-            for (const point of result.landmarks[0]) {
-                points.push(point.x, point.y, point.z);
-            }
+        for (const point of result.landmarks[0]) {
+            points.push(point.x, point.y, point.z);
         }
 
         const response = await fetch(
@@ -81,11 +94,9 @@ async function sendFrame() {
 
         const data = await response.json();
 
-        updateDetection(
-            data.sign,
-            data.confidence,
-            data.text
-        );
+        addToText(data.sign);
+
+        updateDetection(data.sign, data.confidence);
 
     } finally {
 
@@ -94,7 +105,48 @@ async function sendFrame() {
 }
 
 
-function updateDetection(sign, confidence, text) {
+function addToText(prediction) {
+
+    if (prediction === lastPrediction) {
+
+        predictionCount += 1;
+
+    } else {
+
+        lastPrediction = prediction;
+        predictionCount = 1;
+    }
+
+    if (predictionCount >= requiredCount) {
+
+        if (prediction !== lockedPrediction) {
+
+            if (prediction === "space") {
+
+                text += " ";
+
+            } else if (prediction === "backspace") {
+
+                text = text.slice(0, -1);
+
+            } else if (prediction === "clear") {
+
+                text = "";
+
+            } else {
+
+                text += prediction;
+            }
+
+            lockedPrediction = prediction;
+
+            predictionCount = 0;
+        }
+    }
+}
+
+
+function updateDetection(sign, confidence) {
 
     document.getElementById("current-sign").textContent = sign;
 
@@ -107,8 +159,6 @@ function updateDetection(sign, confidence, text) {
 
 
 speakButton.addEventListener("click", function() {
-
-    const text = document.getElementById("detected-text").textContent;
 
     if (text.trim() === "") return;
 
