@@ -156,7 +156,8 @@ CThru/
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/9412bcfe-2b5e-45c5-b47c-bd09aa11de21" />
 
 ### Y
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/4373f064-85d3-4be9-90b8-0b11f650602f" />
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/634bf30a-8349-4827-9aaa-476a99a09cce" />
+
 
 ### Z
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/cf6f8bd4-32c8-41fa-a6a2-29cb333aa290" />
