@@ -17,7 +17,7 @@ let drawing_tool;
 let video;
 let handLandmarker;
 let busy = false;
-
+let latestHand = null;
 let text = "";
 let lockedPrediction = null;
 let lastPrediction = null;
@@ -54,7 +54,9 @@ startButton.addEventListener("click", async function() {
 
     handLandmarker = await HandLandmarker.createFromOptions(vision, {
         baseOptions: {
-            modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
+            modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
+            delegate: "GPU"
+            
         },
         runningMode: "VIDEO",
         numHands: 1,
@@ -64,9 +66,47 @@ startButton.addEventListener("click", async function() {
     startButton.textContent = "Detecting";
 
     setInterval(sendFrame, 100);
+    drawLoop();
 });
 
+function drawLoop(){
+    if (video.readyState >= 2){
+        const result = handLandmarker.detectForVideo(video,performance.now());
+        drawing_tool.clearRect(0,0,canvas.width,canvas.height);
+        if(result.landmarks.length === 0){
+            latestHand = null;
+        }
+        else{
+            latestHand=result.landmarks[0];
+             const hand = result.landmarks[0];
+            drawing_tool.shadowColor = "#00E5FF";
+            drawing_tool.shadowBlur = 15;
+            drawing_tool.strokeStyle = "#00E5FF";
+            drawing_tool.lineWidth = 2;
 
+            for (const pair of connections) {
+
+                const start = hand[pair[0]];
+                const end = hand[pair[1]];
+
+                drawing_tool.beginPath();
+                drawing_tool.moveTo(start.x * canvas.width, start.y * canvas.height);
+                drawing_tool.lineTo(end.x * canvas.width, end.y * canvas.height);
+                drawing_tool.stroke();
+            }
+            drawing_tool.fillStyle = "#E6B450";
+            for (const point of hand){
+                drawing_tool.beginPath()
+                drawing_tool.arc(point.x * canvas.width,point.y * canvas.height,3,0,Math.PI*2)
+                drawing_tool.fill()
+            }
+            }
+
+            
+   
+    }
+    requestAnimationFrame(drawLoop);
+}
 async function sendFrame() {
 
     if (busy) return;
@@ -76,9 +116,9 @@ async function sendFrame() {
 
     try {
 
-        const result = handLandmarker.detectForVideo(video, performance.now());
-        drawing_tool.clearRect(0,0,canvas.width,canvas.height);
-        if (result.landmarks.length === 0) {
+        
+        
+        if (latestHand=== null) {
 
             predictionCount = 0;
             lastPrediction = null;
@@ -89,29 +129,11 @@ async function sendFrame() {
         }
 
         const points = [];
-                const hand = result.landmarks[0];
-        drawing_tool.shadowColor = "#00E5FF";
-        drawing_tool.shadowBlur = 15;
-        drawing_tool.strokeStyle = "#00E5FF";
-        drawing_tool.lineWidth = 2;
-
-        for (const pair of connections) {
-
-            const start = hand[pair[0]];
-            const end = hand[pair[1]];
-
-            drawing_tool.beginPath();
-            drawing_tool.moveTo(start.x * canvas.width, start.y * canvas.height);
-            drawing_tool.lineTo(end.x * canvas.width, end.y * canvas.height);
-            drawing_tool.stroke();
-        }
-        drawing_tool.fillStyle = "#E6B450";
+               
         
-        for (const point of result.landmarks[0]) {
+        for (const point of latestHand) {
             points.push(point.x, point.y, point.z);
-            drawing_tool.beginPath()
-            drawing_tool.arc(point.x * canvas.width,point.y * canvas.height,3,0,Math.PI*2)
-            drawing_tool.fill()
+            
         }
 
         const response = await fetch(
