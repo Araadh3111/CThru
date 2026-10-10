@@ -1,24 +1,82 @@
-# CThru — Sign Language Recognition
+# C-Thru : A Collaborative OpenCV Project with multiple modes.
 
 ## About
 
-Sign Language detector a part of Cthru made by Me(Araadh{ Araadh Singh on slack }) is a machine learning pipeling which uses some custom dataset(custom collected samples) 
-and mostly the letters are from a dataset from Kaggle (https://www.kaggle.com/datasets/grassknoted/asl-alphabet?resource=download) which has positions of hand In american sign
-language letters in varying angles and positions and lightings for the machine to learn better and I have made the front end too so u guys can u se it too(link)
-
+C-Thru is a collaborative project made by us (Araadh,Siddak,Rishu).
+It features multiple OpenCV Project grouped into a single app for anyone to try it out or alter with it.
 
 ---
+## Sections
 
-## How It Works
+### Araadh
 
-The file Recognize_words.py collects webcam data normalizes the data relative to the wrist position and then the model predicts what the letter could be and presents it as text
+Sign language recognition
 
+### Siddak
+
+1.Shape Detection
+
+2.Virtual Painter
+
+3.Gesture Volume Control
+
+### Rishu
+
+1.Pose Estimation(module)
+
+2.Hand Tracking(module)
+
+3.Color Displayer
+
+4.Face Tracker
+
+---
+## Tech Stack
+### Python and Libraries:-
+- OpenCV (Python)
+- MediaPipe
+- scikit-learn
+- Fast API
+- Tkinter
+- Numpy
+- Pyttsx3
+- os
+- subprocess
+- sys
+- pickle
+- pandas
+
+---
+# Project Details:-
+
+## Sign Language Recognition (ASL)
+Sign Language Recognition is a machine learning pipeling which uses some custom dataset(custom collected samples) and mostly the letters are from a dataset from Kaggle (https://www.kaggle.com/datasets/grassknoted/asl-alphabet?resource=download) which has positions of hand in American Sign
+Language(ASL) letters in varying angles and positions and lightings for the machine to learn better.
+
+The file (recognize_words.py) collects webcam data normalizes the data relative to the wrist position and then the model predicts what the letter could be and presents it as text.
 
 Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
 
----
+### How to use :-
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /Araadh/recognize_words.py  
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
 
-
+### Libraries used :-
+- OpenCV
+- Numpy
+- pyttsx3
+- pickle
+- mediapipe
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Araadh/
+│   ├── recognize_words.py 
+└── README.md
+```
 
 ### Dataset Samples
 
@@ -57,6 +115,7 @@ Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
 
 ### K
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/e6fd2b2f-3a82-4d93-8b46-c0deecac5aba" />
+
 ### L
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/1efea42d-8768-4fb7-8b7d-b4dbd7b3a1f6" />
 
@@ -101,53 +160,171 @@ Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
 
 ### Z
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/cf6f8bd4-32c8-41fa-a6a2-29cb333aa290" />
+### Ai usage decleration:
+I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file
+
 
 ---
 
-## Model
+## Shape Detection
+A shape detector that tracks the user's hand and correctly guesses(almost) the shape they make using their hands!
+### How to use :-
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /siddakjr/facial_tracker.py  
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
 
-**Model:** model_webcam.pkl
-
-**Accuracy:** 98.56
-
----
-
-## Website
-
-The frontend was made using HTML, CSS and JavaScript.
-
-**Live:** [YOUR VERCEL LINK]
-
-![Website](./assets/website.png)
-
----
-
-## Backend
-
-**FastAPI** was used to connect the frontend with the sign recognition model.
-
-[Briefly explain `/predict`.]
-
----
-
-## Technologies
-
-- Python
+### Libraries used :-
 - OpenCV
-- MediaPipe
-- scikit-learn
-- FastAPI
-- HTML
-- CSS
-- JavaScript
-
+- Numpy
+### Project Structure :-
+```
+CThru/
+├── .../
+├── siddakjr/
+│   ├── shape_detection.py 
+└── README.md
+```
 ---
 
-## Project Structure
+## Virtual Painter
+A virtual painter that lets you draw on your screen using your hands!
+Raise a single finger to draw and raise two fingers to select between the color/highlighter/eraser(by still raising both the fingers and pointing them on top of the option basically moving your finger on the option you want to select) and then raise a single finger again to draw/ erase using whatever option you selected.
+### How to use :-
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /siddakjr/VirtualPainter.py  
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
 
-```text
-frontend/
-models/
-dataset/
-backend.py
-train_webcam_model.py
+### Libraries used :-
+- OpenCV
+- Numpy
+- OS
+- time
+### Project Structure :-
+```
+CThru/
+├── .../
+├── siddakjr/
+│   ├── VirtualPainter.py 
+└── README.md
+```
+---
+
+## Gesture Volume Control
+Control your device's volume using your fingers!
+### How to use :-
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /siddakjr/VolumeHandControl.py  
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
+
+### Libraries used :-
+- OpenCV
+- Numpy
+- OS
+- time
+### Project Structure :-
+```
+CThru/
+├── .../
+├── siddakjr/
+│   ├── VolumeHandControl.py
+└── README.md
+```
+---
+## Pose Estimation
+A module that tracks the user's body, it is built using mediapipe and has 33 unique points that maps the user's whole body. It change be used to monitor body position for different purposes and serves the purpose of a module to build projects on (coming in next ship!).
+### How to use :-
+
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /Rishu/poseEstimation/PEmodule.py 
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
+
+### Libraries used :-
+- MediaPipe
+- OpenCV
+- Time (for framerates)
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── poseEstimation/
+│   │   ├── PEmodule.py 
+│   │   └── poseEstimation.py
+└── README.md
+```
+---
+## Hand Tracking
+A module that tracks the user's and, it is built using mediapipe and has 21 unique points that maps the user's hands (can be more than one user too). It change be used for gesture controls and accessibility etc and serves the purpose of a module to build projects on.
+### How to use :-
+
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /Rishu/handTracking/HTmodule.py 
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
+
+### Libraries used :-
+- MediaPipe
+- OpenCV
+- Time (for framerates)
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── handTracking/
+│   │   ├── HTmodule.py 
+│   │   └── handTracking.py
+└── README.md
+```
+---
+## Color Displayer
+It can be used to display certain colours from a web cam, image or video. (currently set to blue, a customizable selector will be add when the dashboard is done.)
+### How to use :-
+
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /Rishu/color_displayer.py 
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
+
+### Libraries used :-
+- OpenCV
+- Numpy
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── color_displayer.py
+└── README.md
+```
+---
+## Face Tracker (basic)
+A basic face tracker built on opencv (better version and a mesh version will be added in next ship!)
+### How to use :-
+1.Clone the repo (https://github.com/Araadh3111/CThru.git).
+2.Navigate to /Rishu/facial_tracker.py  
+3.Download the required libraries (pip install {library name} )
+4.Run the project.
+
+### Libraries used :-
+- OpenCV
+- Numpy
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── facial_tracker.py 
+└── README.md
+```
+---
+## Future Updates Will Include:-
+- A dashboard to access all the files in a single place without any hassle.
+  
+- Better face tracker with meshes and a custom color selector.
+
+- Sign language support for ISL(Indian Sign Language).

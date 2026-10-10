@@ -1,8 +1,9 @@
 {
+  "regions": ["bom1"],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend.py"
+      "destination": "/api/index.py"
     }
   ]
 }
