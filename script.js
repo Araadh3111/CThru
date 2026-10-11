@@ -1,9 +1,20 @@
 import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21";
 
+
 const startButton = document.getElementById("start-btn");
 const speakButton = document.getElementById("speak-btn");
 const camera = document.getElementById("camera");
 const requiredCount = 8;
+const words = ["HELLO","HI","HELP","HOW","HOW ARE YOU","HAPPY","HUNGRY","HOME",
+    "YES","NO","PLEASE","THANKS","THANK YOU","SORRY",
+    "GOOD","GOOD MORNING","GOOD NIGHT","BYE",
+    'WHAT','WHATS UP','WHERE','WHEN','WHY','WHO',
+    'WATER','FOOD','EAT','DRINK',
+    'I LOVE PIZZA','I AM', 'LOVE','LIKE', 'WANT','NEED',
+    'MY NAME IS', 'NAME', 'FRIEND', 'FAMILY', 'SCHOOL',
+    'PLAY', 'FOOTBALL', 'RONALDO', 'SIUUUUUUUUUUUUUUUU!',
+    'VAMOS'
+];
 const connections = [
     [0, 1], [1, 2], [2, 3], [3, 4],
     [0,5], [5,6], [6,7], [7,8],
@@ -18,7 +29,7 @@ let video;
 let handLandmarker;
 let busy = false;
 let latestHand = null;
-let text = "";
+let text = "HEL";
 let lockedPrediction = null;
 let lastPrediction = null;
 let predictionCount = 0;
@@ -68,7 +79,23 @@ startButton.addEventListener("click", async function() {
     setInterval(sendFrame, 100);
     drawLoop();
 });
+function getCurrentWord(){
+    var parts = text.split(" ");
+    return parts[parts.length-1]
 
+}
+function getSuggestions(){
+    var currentword = getCurrentWord()
+    const results = [];
+    if (currentword === "")
+        {return results;}
+        
+    for (const word of words){
+        if (word.startsWith(currentword)) {results.push(word)}
+    
+    }
+    return results.slice(0,3);
+}
 function drawLoop(){
     if (video.readyState >= 2){
         const result = handLandmarker.detectForVideo(video,performance.now());
@@ -108,7 +135,7 @@ function drawLoop(){
     requestAnimationFrame(drawLoop);
 }
 async function sendFrame() {
-
+    
     if (busy) return;
     if (video.readyState < 2) return;
 
@@ -213,6 +240,8 @@ function updateDetection(sign, confidence) {
 
     document.getElementById("detected-text").textContent =
         text;
+
+    document.getElementById("suggestions").textContent = getSuggestions()
 }
 
 
