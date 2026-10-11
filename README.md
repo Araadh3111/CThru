@@ -94,7 +94,8 @@ Language(ASL) letters in varying angles and positions and lightings for the mach
 
 The file (recognize_words.py) collects webcam data normalizes the data relative to the wrist position and then the model predicts what the letter could be and presents it as text.
 
-Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
+### How it works
+Webcam → MediaPipe in the browser → 21 hand points (63 numbers) → FastAPI server → Random Forest model → letter → text
 
 ### Libraries used :-
 - OpenCV
@@ -197,6 +198,25 @@ CThru/
 ### Z
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/cf6f8bd4-32c8-41fa-a6a2-29cb333aa290" />
 
+### SPACE: 
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/b13da0e6-f7c1-4c68-9967-5b956fe85b4e" />
+
+
+
+## Features of Cthru Sign detection:
+- Recognizes 29 signs: A to Z, space, backspace and clear
+- Live hand skeleton drawn over the camera
+- Shows the current sign and its confidence
+- Hold a sign steady to type the letter, so shaky hands do not add random letters
+- Suggests up to three words as you spell
+- Pick a suggestion by clicking it, or by pointing at it for one second
+- Speak button reads the text out loud
+- Runs in the browser, nothing to install: https://cthru.vercel.app/
+
+
+
+### Please Note:
+The Sign for Clearing all the text is 👍 thumbs up and The Sign for Using backspacec is 👎 thumbs down.
 
 ### Ai usage decleration:
 I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file.
