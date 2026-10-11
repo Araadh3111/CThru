@@ -55,7 +55,7 @@ Sign language recognition
 
 2.Virtual Painter
 
-3.Gesture Volume Control( only for mac )
+3.Gesture Volume Control(only for mac)
 
 ### Rishu
 
@@ -203,7 +203,7 @@ CThru/
 
 
 
-## Features of Cthru Sign detection:
+## Features of C Thru Sign detection:
 - Recognizes 29 signs: A to Z, space, backspace and clear
 - Live hand skeleton drawn over the camera
 - Shows the current sign and its confidence
@@ -216,10 +216,10 @@ CThru/
 
 
 ### Please Note:
-The Sign for Clearing all the text is 👍 thumbs up and The Sign for Using backspacec is 👎 thumbs down.
+The Sign for Clearing all the text is 👍 thumbs up and The Sign for Using backspace is 👎 thumbs down.
 
-### Ai usage decleration:
-I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file.
+### AI usage declaration:
+I have used Claude to fix the vercel deployment error by helping me make **some** changes in the script .js file.
 
 
 ---
@@ -345,6 +345,3 @@ CThru/
 └── README.md
 ```
 ---
-## Future Updates Will Include:-
-- More features and Making this into an exe application
-- Sign language support for ISL(Indian Sign Language).
