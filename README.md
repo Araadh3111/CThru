@@ -3,7 +3,7 @@
 ## About
 
 C-Thru is a collaborative project made by us (Araadh,Siddak,Rishu).
-It features multiple OpenCV Project grouped into a single app for anyone to try it out or alter with it.
+It features multiple OpenCV Project grouped into a single app and a demo website(we prefer the app it's more reliable) for anyone to try it out or alter with it.
 
 ---
 # How to Use the App (very important):
