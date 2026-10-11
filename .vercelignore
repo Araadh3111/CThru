@@ -10,5 +10,5 @@ runner.py
 backend.py
 ex1.jpg
 *.csv 
-#the website only used Model_webcam.pkl
+#the website only used model_webcam.pkl
 models/model.pkl
