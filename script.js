@@ -12,8 +12,10 @@ const words = ["HELLO","HI","HELP","HOW","HOW ARE YOU","HAPPY","HUNGRY","HOME",
     'WATER','FOOD','EAT','DRINK',
     'I LOVE PIZZA','I AM', 'LOVE','LIKE', 'WANT','NEED',
     'MY NAME IS', 'NAME', 'FRIEND', 'FAMILY', 'SCHOOL',
-    'PLAY', 'FOOTBALL', 'RONALDO', 'SIUUUUUUUUUUUUUUUU!',
-    'VAMOS'
+    'PLAY', 'RONALDO', 'SIUUUUUUUUUUUUUUUU!',
+    'VAMOS',"HACKCLUB!", "BEST", 'THE','MESSI','FOOTBALL',
+    'PLANT','CODING','HARDWARE','PHYSICS','MACBOOK',
+    'FRANCE','MOROCCO','F1'
 ];
 const connections = [
     [0, 1], [1, 2], [2, 3], [3, 4],
@@ -23,6 +25,8 @@ const connections = [
     [0,17],[17,18],[18,19],[19,20],
     [5,9],[9,13],[13,17]
 ];
+let hoverZone = -1;
+let hoverStart = 0;
 let canvas;
 let drawing_tool;
 let video;
@@ -33,6 +37,7 @@ let text = "";
 let lockedPrediction = null;
 let lastPrediction = null;
 let predictionCount = 0;
+let shownSuggestions = "";
 
 startButton.addEventListener("click", async function() {
 
@@ -84,6 +89,7 @@ function getCurrentWord(){
     return parts[parts.length-1]
 
 }
+
 function getSuggestions(){
     var currentword = getCurrentWord()
     const results = [];
@@ -96,21 +102,79 @@ function getSuggestions(){
     }
     return results.slice(0,3);
 }
+function acceptSuggestion(word){
+    var current = getCurrentWord()
+    var keptwords = text.slice(0,text.length-current.length);
+    text = keptwords + word + " "
+    document.getElementById("detected-text").textContent = text;
+    showSuggestions();
+    
+}
+function showSuggestions(){
+    var list = getSuggestions();
+    var key = list.join("|");
+    if (key === shownSuggestions) return;
+    shownSuggestions = key;
+    var box = document.getElementById("suggestions");
+    box.innerHTML = "";
+
+    for (const word of list) {
+
+        var button = document.createElement("button");
+        button.textContent = word;
+        button.addEventListener("click",function(){acceptSuggestion(word);})
+        box.appendChild(button);
+    }
+}
+function drawSuggestionZones(){
+    drawing_tool.shadowBlur = 0;
+    var list = getSuggestions();
+    var zoneWidth = canvas.width/3;
+    var zoneHeight = canvas.height * 0.15;
+    var zonetop = canvas.height *0.12;
+    var pointed = getPointedZone();
+    for (let i = 0; i < list.length; i++){
+        var x = i*zoneWidth
+        if (i === pointed){drawing_tool.fillStyle = "rgba(0,229,255,0.5)"}
+        else{
+            drawing_tool.fillStyle = "rgba(0,0,0,0.5)"
+        }
+        drawing_tool.fillRect(x,zonetop,zoneWidth,zoneHeight);
+        drawing_tool.strokeStyle = "#00E5FF";
+        drawing_tool.strokeRect(x,zonetop,zoneWidth,zoneHeight);
+        drawing_tool.fillStyle = "white";
+        drawing_tool.font = "24px sans-serif";
+        drawing_tool.textAlign = "center";
+        drawing_tool.fillText(list[i], x + zoneWidth / 2, zonetop + zoneHeight/2 + 8,zoneWidth - 10);
+
+    }
+}
+function checkPointing(){
+    var zone = getPointedZone()
+    var list = getSuggestions()
+    if (zone !== hoverZone){hoverZone = zone, hoverStart = performance.now()}//current time in ms = performance.now()
+    if (zone === -1){return}
+    if (zone >= list.length){return}
+    if (performance.now()- hoverStart >1000){acceptSuggestion(list[zone]), hoverZone = -1}
+}
 function drawLoop(){
     if (video.readyState >= 2){
         const result = handLandmarker.detectForVideo(video,performance.now());
         drawing_tool.clearRect(0,0,canvas.width,canvas.height);
+        drawSuggestionZones();
+        checkPointing();
         if(result.landmarks.length === 0){
             latestHand = null;
         }
+        
         else{
             latestHand=result.landmarks[0];
-             const hand = result.landmarks[0];
+            const hand = result.landmarks[0];
             drawing_tool.shadowColor = "#00E5FF";
             drawing_tool.shadowBlur = 15;
             drawing_tool.strokeStyle = "#00E5FF";
             drawing_tool.lineWidth = 2;
-
+            
             for (const pair of connections) {
 
                 const start = hand[pair[0]];
@@ -154,6 +218,13 @@ async function sendFrame() {
             updateDetection("None", 0);
             return;
         }
+        var zone = getPointedZone()
+        if(zone !== -1 && zone < getSuggestions().length ){
+            predictionCount = 0
+            lastPrediction= null
+            return
+
+        }
 
         const points = [];
                
@@ -188,7 +259,15 @@ async function sendFrame() {
         busy = false;
     }
 }
+function getPointedZone(){
+    if (latestHand === null){return -1}
+    var tip = latestHand[8]
+    if(tip.y < 0.12 || tip.y > 0.27){return -1}
 
+    var zone = Math.floor(tip.x*3)
+    return zone;
+
+}
 
 function addToText(prediction) {
 
@@ -241,7 +320,7 @@ function updateDetection(sign, confidence) {
     document.getElementById("detected-text").textContent =
         text;
 
-    document.getElementById("suggestions").textContent = getSuggestions()
+    showSuggestions()
 }
 
 
