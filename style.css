@@ -95,7 +95,8 @@ section h3 {
 
 #current-sign,
 #confidence,
-#detected-text {
+#detected-text,
+#suggestions {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 0;
@@ -153,4 +154,4 @@ section h3 {
         align-items: center;
     }
 
-}
+}   
