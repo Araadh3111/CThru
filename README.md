@@ -219,11 +219,32 @@ CThru/
 ### Please Note:
 The Sign for Clearing all the text is 👍 thumbs up and The Sign for Using backspace is 👎 thumbs down.
 
-### AI usage declaration:
-I have used Claude to fix the vercel deployment error by helping me make **some** changes in the script .js file.
+I used Claude (AI) for these parts:
+- Fixing the Vercel deployment
+- Guidance on the website features in `script.js`.
 
 
 ---
+## Virtual Keyboard:
+A virtual keyboard that works by pinching on the letters using our hands
+
+### used libraries:-
+- open cv
+- mediapipe (for hand detection)
+- math
+
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Araadh/
+│   ├── virtual_keyboard.py
+└── README.md
+```
+---
+
+
+
 
 ## Shape Detection
 A shape detector that tracks the user's hand and correctly guesses(almost) the shape they make using their hands!
@@ -346,3 +367,27 @@ CThru/
 └── README.md
 ```
 ---
+
+## Virtual Mouse:
+A mouse that moves with ure index finger and u can click by using ure index and middle finger
+
+### Libraries Useed:
+- Open Cv
+- mediapipe
+- numpy
+- time
+- autopy
+- HTmodule
+
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── VirtualMouse.py
+└── README.md
+```
+---
+
+Made by 3 nobrainers Araadh (raadh3111 on slack), Rishu and Siddak!
+made for ysws Third Space!
