@@ -13,7 +13,7 @@ const words = ["HELLO","HI","HELP","HOW","HOW ARE YOU","HAPPY","HUNGRY","HOME",
     'I LOVE PIZZA','I AM', 'LOVE','LIKE', 'WANT','NEED',
     'MY NAME IS', 'NAME', 'FRIEND', 'FAMILY', 'SCHOOL',
     'PLAY', 'FOOTBALL', 'RONALDO', 'SIUUUUUUUUUUUUUUUU!',
-    'VAMOS'
+    'VAMOS',"HACKCLUB!", "BEST", 'THE','MESSI','FOOTBALL','PLANT','CODIHG','HARDWARE','PHYSICS','MACBOOK','FRANCE','MOROCCO','F1'
 ];
 const connections = [
     [0, 1], [1, 2], [2, 3], [3, 4],
@@ -29,7 +29,7 @@ let video;
 let handLandmarker;
 let busy = false;
 let latestHand = null;
-let text = "HEL";
+let text = "";
 let lockedPrediction = null;
 let lastPrediction = null;
 let predictionCount = 0;
