@@ -1,4 +1,5 @@
 # C-Thru : A Collaborative OpenCV Project with multiple modes.
+<img width="390" height="102" alt="image" src="https://github.com/user-attachments/assets/cb3d6766-065c-4862-8e06-f2e6884df20f" />
 
 ## About
 
