@@ -12,6 +12,12 @@
 
 <body>
 
+    <div id="loader">
+        <h1>CThru</h1>
+        <div class="spinner"></div>
+        <p>Loading something cool... (dummy)</p>
+    </div>
+
     <h1>CThru</h1>
 
     <div id="dashboard">
@@ -42,6 +48,10 @@
                 <h3>Suggestions</h3>
                 <p id ="suggestions"></p>
             </section>
+            <section>
+                <h3>Running Program:</h3>
+                <p id="running">Nothing</p>
+            </section>
 
         </div>
 
@@ -59,10 +69,17 @@
              Speak Text
         </button>
 
+        <button id="stop-btn">
+            Stop Program
+        </button>
+
     </div>
 
-    <script type="module" src="script.js"></script>
+    <h2 id="program-title">Programs</h2>
+    <div id="programs"></div>
 
+    <script type="module" src="script.js"></script>
+    <script src="programs.js"></script>
 </body>
 
 </html>

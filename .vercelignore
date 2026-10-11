@@ -1,0 +1,14 @@
+# only needed locally / for training, not on the website
+asl_dataset/
+Araadh/
+Rishu/
+siddakjr/
+desktop/
+Github/
+server.py
+runner.py
+backend.py
+ex1.jpg
+*.csv 
+#the website only used model_webcam.pkl
+models/model.pkl

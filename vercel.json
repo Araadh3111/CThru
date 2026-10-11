@@ -1,4 +1,5 @@
 {
+  "framework": null,
   "regions": ["bom1"],
   "rewrites": [
     {
