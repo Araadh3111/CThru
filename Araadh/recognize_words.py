@@ -3,10 +3,13 @@ import mediapipe as mp
 import pickle
 import numpy as np
 import pyttsx3
+import os
 
 engine = pyttsx3.init()
+main_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+model_path = os.path.join(main_folder,"models","model_webcam.pkl")
 
-with open("models/model_webcam.pkl", "rb") as f:
+with open(model_path, "rb") as f:
     model = pickle.load(f)
 
 mp_hands = mp.solutions.hands
