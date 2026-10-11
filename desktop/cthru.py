@@ -33,6 +33,8 @@ scripts = {
     "Virtual Painter": "siddakjr/VirtualPainter.py",
     "Volume Control": "siddakjr/VolumeHandControl.py",
     "Shape Detector": "siddakjr/shape_detection.py",
+    "Keyboard": "Araadh/virtual_keyboard.py",
+    "Mouse": "Rishu/VirtualMouse/VirtualMouse.py",
 }
 
 headings = [
@@ -52,6 +54,8 @@ buttons = [
     ("Virtual Painter", 332, 512),
     ("Volume Control", 513, 512),
     ("Shape Detector", 689, 512),
+    ("Keyboard",357,587),
+    ("Mouse",669,587),
 ]
 
 lines = [
