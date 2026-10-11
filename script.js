@@ -29,10 +29,11 @@ let video;
 let handLandmarker;
 let busy = false;
 let latestHand = null;
-let text = "";
+let text = "HEL";
 let lockedPrediction = null;
 let lastPrediction = null;
 let predictionCount = 0;
+let shownSuggestions = "";
 
 startButton.addEventListener("click", async function() {
 
@@ -84,6 +85,7 @@ function getCurrentWord(){
     return parts[parts.length-1]
 
 }
+
 function getSuggestions(){
     var currentword = getCurrentWord()
     const results = [];
@@ -95,6 +97,30 @@ function getSuggestions(){
     
     }
     return results.slice(0,3);
+}
+function acceptSuggestion(word){
+    var current = getCurrentWord()
+    var keptwords = text.slice(0,text.length-current.length);
+    text = keptwords + word + " "
+    document.getElementById("detected-text").textContent = text;
+    showSuggestions();
+    
+}
+function showSuggestions(){
+    var list = getSuggestions();
+    var key = list.join("|");
+    if (key === shownSuggestions) return;
+    shownSuggestions = key;
+    var box = document.getElementById("suggestions");
+    box.innerHTML = "";
+
+    for (const word of list) {
+
+        var button = document.createElement("button");
+        button.textContent = word;
+        button.addEventListener("click",function(){acceptSuggestion(word);})
+        box.appendChild(button);
+    }
 }
 function drawLoop(){
     if (video.readyState >= 2){
@@ -241,7 +267,7 @@ function updateDetection(sign, confidence) {
     document.getElementById("detected-text").textContent =
         text;
 
-    document.getElementById("suggestions").textContent = getSuggestions()
+    showSuggestions()
 }
 
 
