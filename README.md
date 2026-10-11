@@ -6,6 +6,43 @@ C-Thru is a collaborative project made by us (Araadh,Siddak,Rishu).
 It features multiple OpenCV Project grouped into a single app for anyone to try it out or alter with it.
 
 ---
+# How to Use the App (very important):
+1) open terminal after cloning the repo in ure desktop or downloading it.
+2) make sure u are in the cthru folder, if not go there by writing 'cd Cthru' in the terminal.
+3) after that type py -3.11 py -3.11 desktop/cthru.py.
+4) once that step is done an interface like this should open.
+<img width="1127" height="837" alt="image" src="https://github.com/user-attachments/assets/ea04b4ac-9017-47ed-88ee-ddae0251e5e2" />
+5) Select a Button from the availaible options to see the program work.
+6) Please see the ASL part (developed by me (Araadh)) will take u to the website 'https://cthru.vercel.app/' and to use the ASL feature please refer to the hand signs attatched below.
+
+## Images of different programs
+
+### ASL:
+<img width="1917" height="982" alt="image" src="https://github.com/user-attachments/assets/598b5e90-6e1e-4b7d-bef9-e539b872af8f" />
+
+### Hand Detector:
+<img width="925" height="730" alt="image" src="https://github.com/user-attachments/assets/5911eea2-49a5-40c7-9b28-db222009ac22" />
+
+### Face Mesh:
+<img width="797" height="685" alt="image" src="https://github.com/user-attachments/assets/6777e5fe-7861-4c02-9d25-21fb13c44b13" />
+
+### Face Box:
+<img width="670" height="633" alt="image" src="https://github.com/user-attachments/assets/d8c7db35-f10d-4733-b348-183f29a6e94a" />
+
+### Pose Detector:
+<img width="447" height="630" alt="image" src="https://github.com/user-attachments/assets/d604c2f4-b882-4940-9d62-9726ec7a4162" />
+
+### Face Blur:
+<img width="536" height="682" alt="image" src="https://github.com/user-attachments/assets/958d444a-8ef6-4a92-8e18-16d02c2c50cb" />
+
+### Virtual Painter:
+<img width="1220" height="936" alt="image" src="https://github.com/user-attachments/assets/7467a741-97d8-45a4-ae96-5ae49ae33d3d" />
+
+### Finger Count
+<img width="745" height="630" alt="image" src="https://github.com/user-attachments/assets/8fbaa1bf-5099-45bb-8ccd-916c392a8a70" />
+
+
+---
 ## Sections
 
 ### Araadh
@@ -18,7 +55,7 @@ Sign language recognition
 
 2.Virtual Painter
 
-3.Gesture Volume Control
+3.Gesture Volume Control( only for mac )
 
 ### Rishu
 
@@ -45,6 +82,8 @@ Sign language recognition
 - sys
 - pickle
 - pandas
+- math
+- 
 
 ---
 # Project Details:-
@@ -56,12 +95,6 @@ Language(ASL) letters in varying angles and positions and lightings for the mach
 The file (recognize_words.py) collects webcam data normalizes the data relative to the wrist position and then the model predicts what the letter could be and presents it as text.
 
 Webcam → MediaPipe → Hand Landmarks → ML Model → Sign → Text
-
-### How to use :-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /Araadh/recognize_words.py  
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - OpenCV
@@ -163,19 +196,17 @@ CThru/
 
 ### Z
 <img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/cf6f8bd4-32c8-41fa-a6a2-29cb333aa290" />
+
+
 ### Ai usage decleration:
-I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file
+I have used Claude to fix the verecel deployement error by helping me make **some** changwes in the script .js file.
 
 
 ---
 
 ## Shape Detection
 A shape detector that tracks the user's hand and correctly guesses(almost) the shape they make using their hands!
-### How to use :-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /siddakjr/facial_tracker.py  
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
+
 
 ### Libraries used :-
 - OpenCV
@@ -193,11 +224,6 @@ CThru/
 ## Virtual Painter
 A virtual painter that lets you draw on your screen using your hands!
 Raise a single finger to draw and raise two fingers to select between the color/highlighter/eraser(by still raising both the fingers and pointing them on top of the option basically moving your finger on the option you want to select) and then raise a single finger again to draw/ erase using whatever option you selected.
-### How to use :-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /siddakjr/VirtualPainter.py  
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - OpenCV
@@ -214,13 +240,8 @@ CThru/
 ```
 ---
 
-## Gesture Volume Control
+## Gesture Volume Control(WORKS ONLY ON MACBOOK)
 Control your device's volume using your fingers!
-### How to use :-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /siddakjr/VolumeHandControl.py  
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - OpenCV
@@ -238,12 +259,6 @@ CThru/
 ---
 ## Pose Estimation
 A module that tracks the user's body, it is built using mediapipe and has 33 unique points that maps the user's whole body. It change be used to monitor body position for different purposes and serves the purpose of a module to build projects on (coming in next ship!).
-### How to use :-
-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /Rishu/poseEstimation/PEmodule.py 
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - MediaPipe
@@ -262,12 +277,7 @@ CThru/
 ---
 ## Hand Tracking
 A module that tracks the user's and, it is built using mediapipe and has 21 unique points that maps the user's hands (can be more than one user too). It change be used for gesture controls and accessibility etc and serves the purpose of a module to build projects on.
-### How to use :-
 
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /Rishu/handTracking/HTmodule.py 
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - MediaPipe
@@ -286,12 +296,6 @@ CThru/
 ---
 ## Color Displayer
 It can be used to display certain colours from a web cam, image or video. (currently set to blue, a customizable selector will be add when the dashboard is done.)
-### How to use :-
-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /Rishu/color_displayer.py 
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
 
 ### Libraries used :-
 - OpenCV
@@ -307,11 +311,7 @@ CThru/
 ---
 ## Face Tracker (basic)
 A basic face tracker built on opencv (better version and a mesh version will be added in next ship!)
-### How to use :-
-1.Clone the repo (https://github.com/Araadh3111/CThru.git).
-2.Navigate to /Rishu/facial_tracker.py  
-3.Download the required libraries (pip install {library name} )
-4.Run the project.
+
 
 ### Libraries used :-
 - OpenCV
@@ -326,8 +326,5 @@ CThru/
 ```
 ---
 ## Future Updates Will Include:-
-- A dashboard to access all the files in a single place without any hassle.
-  
-- Better face tracker with meshes and a custom color selector.
-
+- More features and Making this into an exe application
 - Sign language support for ISL(Indian Sign Language).
