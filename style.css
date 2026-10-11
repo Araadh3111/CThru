@@ -1,37 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Russo+One&display=swap');
+:root{
+    --navy: #06103A;
+    --deep: #040A28;
+    --purple: #2D1E6A;
+    --teal: #0A2848;
+    --ink: #EDEDF5;
+    --muted: #A9AED1;
+    --glass: rgba(255,255,255,0.08);
+    --glass-bright: rgba(255,255,255,0.18);
+    --glass-line: rgba(255,255,255,0.22);
+    --gold: #E6B450;
+    --cyan: #00E5FF;
+    --stage-line: #1E8CE6;
+    --stop: #E5484D;
+    --font: "SF Pro Display", -apple-system, "Segoe UI", Inter, Roboto, Arial, sans-serif;
 
+}
 
-body {
-    background-color: bisque;
-    color: black;
-    font-family: 'Russo One', sans-serif;
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--deep);
+    color :var(--ink);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.4;
     margin: 0;
-    padding: 20px;
+    padding: 28px 24px 60px;
+    min-height: 100vh;
+
 }
 
 h1 {
-    font-family: 'Russo One', sans-serif;
-    font-weight: 700;
-    margin: 10px 0 25px 0;
+    font-size: 48px;
+    color: var(--ink);
     text-align: center;
+    margin: 0 0 20px 0;
 }
 
 #dashboard {
     display: flex;
-    gap: 25px;
-    align-items: stretch;
+    gap: 20px;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 0 auto;
 }
-
-
-
 
 #camera {
     width: 70%;
     height: 500px;
     background-color: black;
-    border-radius: 12px;
+    border: 3px solid var(--stage-line);
+    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,16 +60,20 @@ h1 {
 }
 
 #camera p {
-    color: white;
+    color: var(--muted);
+    font-size: 18px;
 }
-
-
-
 
 #camera video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+#camera img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 #overlay {
@@ -61,80 +85,161 @@ h1 {
     object-fit: cover;
 }
 
-
-
+.cam-loading {
+    position: absolute;
+    font-size: 22px;
+}
 
 #info {
     width: 30%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
-
-
-
 
 section {
-    background-color: white;
-    padding: 20px;
-    margin: 0;
-    max-width: none;
-    flex: 1;
+    background-color: var(--glass);
+    border: 1px solid var(--glass-line);
     border-radius: 20px;
-    border: 2px solid black;
-    box-sizing: border-box;
+    padding: 14px 20px;
+    flex: 1;
 }
-
 
 section h3 {
-    margin-top: 0;
-    font-size: 18px;
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 4px 0;
 }
 
-#current-sign,
-#confidence,
-#detected-text,
-#suggestions {
-    font-size: 30px;
+section p {
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 0;
+    margin: 0;
     word-break: break-word;
 }
 
+#detected-text {
+    color: var(--gold);
+}
 
+button {
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    background-color: var(--glass);
+    border: 1px solid var(--glass-line);
+    border-radius: 999px;
+    padding: 12px 26px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--glass-bright);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 #buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 12px;
+    margin-top: 22px;
 }
 
-
-#start-btn,
-#speak-btn {
-    padding: 12px 25px;
-    font-family: 'Russo One', sans-serif;
-    font-size: 16px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+#start-btn {
+    color: var(--deep);
+    background-color: var(--gold);
+    border-color: var(--gold);
 }
 
-
-#start-btn:hover,
-#speak-btn:hover {
-    transform: scale(1.05);
+#stop-btn {
+    border-color: var(--stop);
 }
 
+#suggestions button {
+    font-size: 14px;
+    padding: 6px 14px;
+    margin: 4px 4px 0 0;
+}
 
+#program-title {
+    max-width: 1200px;
+    margin: 40px auto 14px auto;
+}
 
+#programs {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 14px;
+    color: var(--muted);
+}
+
+.program-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    border-radius: 20px;
+    padding: 16px 20px;
+    text-align: left;
+}
+
+.program-btn .member {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.program-btn.active {
+    border-color: var(--gold);
+    background-color: var(--glass-bright);
+}
+
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+    transition: opacity 0.6s;
+}
+
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#loader p {
+    color: var(--muted);
+}
+
+.spinner {
+    width: 46px;
+    height: 46px;
+    border: 4px solid var(--glass-line);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 @media (max-width: 800px) {
     #dashboard {
-
         flex-direction: column;
     }
 
@@ -149,140 +254,5 @@ section h3 {
 
     #buttons {
         flex-direction: column;
-        align-items: center;
-    }
-
-}   
-
-#loader {
-    position: fixed;
-    inset: 0;
-    background-color: bisque;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    z-index: 1000;
-    transition: opacity 0.6s;
-}
-
-#loader h1 {
-    font-size: 64px;
-    margin: 0;
-}
-
-#loader p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px;
-}
-
-#loader.hidden{
-    opacity: 0;
-    pointer-events: none;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid black;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rtoate(360deg);}
-}
-
-#camera img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.cam-loading{
-    position: absolute;
-    font-size: 22px
-}
-
-#stop-btn {
-    padding: 12px 25px;
-    font-family: 'Russo One', sans-serif;
-    font-size: 16px;
-    background-color: #d62828;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-#stop-btn:hover {
-    transform: scale(1.05);
-}
-
-#programs-title{
-    max-width: 1200px;
-    margin: 50px auto 15px;
-}
-
-#programs {
-    max-width: 1200px;
-    margin: 0 auto 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 18px;
-}
-
-.program-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 18px;
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-    border-radius: 16px;
-    box-shadow: 4px 4px 0 black;
-    font-family: 'Russo One', sans-serif;
-    font-size: 17px;
-    text-align: left;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-}
-
-.program-btn .member{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: #777;
-}
-
-.program-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 black;
-}
-
-.program-btn.active {
-    background-color: black;
-    color: white;
-}
-
-.program-btn.active .member{
-    color: #bbb;
-}
-
-.program-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-@media (max-width: 800px) {
-    #programs-title,
-    #programs {
-        margin-left: 0;
-        margin-right: 0;
     }
 }
