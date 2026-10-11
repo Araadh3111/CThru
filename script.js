@@ -29,7 +29,7 @@ let video;
 let handLandmarker;
 let busy = false;
 let latestHand = null;
-let text = "HEL";
+let text = "";
 let lockedPrediction = null;
 let lastPrediction = null;
 let predictionCount = 0;
