@@ -8,7 +8,7 @@ import tkinter.font
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
-
+import webbrowser
 here = os.path.dirname(os.path.abspath(__file__))
 main_folder = os.path.dirname(here)
 assets = os.path.join(here, "assets")
@@ -27,7 +27,7 @@ scripts = {
     "Face Box": "Rishu/faceDetection/FDmodule.py",
     "Face Mesh": "Rishu/faceMesh/FMmodule.py",
     "Pose": "Rishu/poseEstimation/PEmodule.py",
-    "ASL": "Araadh/recognize_words.py",
+    "ASL": "https://cthru.vercel.app/",
     "Face Blur": "siddakjr/face_blurring.py",
     "Finger Count": "siddakjr/FingerCounter.py",
     "Virtual Painter": "siddakjr/VirtualPainter.py",
@@ -69,7 +69,7 @@ blobs = [
 ]
 
 credits = [
-    "Araadh  -  ASL sign language recognition",
+    "Araadh  -  ASL sign language recognition(the hardest one thats why I am the goat)",
     "Siddak  -  Face Blur, Finger Count, Virtual Painter, Volume Control, Shape Detector",
     "Rishu  -  Hand, Face Box, Face Mesh, Pose",
 ]
@@ -231,6 +231,10 @@ def show_panel(title, message):
 
 
 def show_project(name):
+    if scripts[name].startswith("http"):
+        webbrowser.open(scripts[name])
+        return
+    
     show_panel(name, "")
     pill(434, 48, 150, 56, "Home", 18, "bold", show_home)
     pill(599, 48, 150, 56, "Restart", 18, "bold", lambda: launch(name))
@@ -267,7 +271,7 @@ def watch():
     global running
     if running is not None and running.poll() is not None:
         running = None
-        canvas.itemconfig(status, text="It closed. Press Restart to run it again.\nIf it closed by itself, look at the terminal for the error.")
+        canvas.itemconfig(status, text="It closed. Press restart to run it again.\nif it closed by itself, look at the terminal for the error.")
     window.after(500, watch)
 
 
