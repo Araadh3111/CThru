@@ -16,8 +16,9 @@ models = {
     "Shape Detector": "shape_detection.py",
     "Volume Control": "VolumeHandControl.py",
     "Screen Designer": "VirtualPainter.py",
-    "Sign Language": "sign_language.py",
-    "Face and Eye Mask": "face_mask.py",
+    "Sign Language": "../Araadh/recognize_words.py",
+    "Face and Eye Mask": "face_blurring.py",
+    "Pose tracker": "../Rishu/poseEstimation/PEmodule.py"
 }
 
 running = None
@@ -111,7 +112,7 @@ canvas.create_image(0, 0, image=bg_photo, anchor="nw")
 canvas.create_text(W // 2 + 2, 92, text="C-THRU", font=(font_name, 56, "bold"), fill="#333333")
 canvas.create_text(W // 2, 90, text="C-THRU", font=(font_name, 56, "bold"), fill="white")
 
-positions = [(80, 190), (370, 190), (660, 190), (225, 370), (515, 370)]
+positions = [(80, 190), (370, 190), (660, 190), (80, 370), (370, 370), (660,370)]
 for name, (x, y) in zip(models, positions):
     make_card(x, y, 260, 150, name, 20, lambda n=name: launch(n))
 
