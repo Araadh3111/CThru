@@ -225,6 +225,26 @@ I used Claude (AI) for these parts:
 
 
 ---
+## Virtual Keyboard:
+A virtual keyboard that works by pinching on the letters using our hands
+
+### used libraries:-
+- open cv
+- mediapipe (for hand detection)
+- math
+
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Araadh/
+│   ├── virtual_keyboard.py
+└── README.md
+```
+---
+
+
+
 
 ## Shape Detection
 A shape detector that tracks the user's hand and correctly guesses(almost) the shape they make using their hands!
@@ -347,3 +367,27 @@ CThru/
 └── README.md
 ```
 ---
+
+## Virtual Mouse:
+A mouse that moves with ure index finger and u can click by using ure index and middle finger
+
+### Libraries Useed:
+- Open Cv
+- mediapipe
+- numpy
+- time
+- autopy
+- HTmodule
+
+### Project Structure :-
+```
+CThru/
+├── .../
+├── Rishu/
+│   ├── VirtualMouse.py
+└── README.md
+```
+---
+
+Made by 3 nobrainers Araadh (raadh3111 on slack), Rishu and Siddak!
+made for ysws Third Space!
