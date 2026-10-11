@@ -219,8 +219,9 @@ CThru/
 ### Please Note:
 The Sign for Clearing all the text is 👍 thumbs up and The Sign for Using backspace is 👎 thumbs down.
 
-### AI usage declaration:
-I have used Claude to fix the vercel deployment error by helping me make **some** changes in the script .js file.
+I used Claude (AI) for these parts:
+- Fixing the Vercel deployment
+- Guidance on the website features in `script.js`.
 
 
 ---
